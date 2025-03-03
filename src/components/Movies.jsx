@@ -3,10 +3,10 @@ import React, { use } from "react";
 import MovieCard from "./MovieCard";
 import axios from "axios";
 
-function Movies() {
+function Movies({handleAddToWatchList, handleRemoveFromWatchList,watchlist}) {
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const moviesPerPage = 21;
+  const moviesPerPage = 21; 
 
   useEffect(() => {
     const options = {
@@ -43,8 +43,12 @@ function Movies() {
       <div className="flex flex-row flex-wrap justify-around gap-1 mt-5">
         {currentMovies.map((movieObj) => (
           <MovieCard
+            movieObj={movieObj}
             primaryImage={movieObj.primaryImage}
             name={movieObj.originalTitle}
+            handleAddToWatchList={handleAddToWatchList}
+            handleRemoveFromWatchList={handleRemoveFromWatchList}
+            watchlist={watchlist}
             key={movieObj.id}
           />
         ))}
